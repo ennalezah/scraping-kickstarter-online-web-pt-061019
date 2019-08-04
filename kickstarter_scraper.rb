@@ -1,5 +1,6 @@
 # require libraries/modules here
 require 'nokogiri'
+require 'open-uri'
 require 'pry'
 
 # projects: kickstarter.css("li.project.grid_4")
@@ -9,20 +10,34 @@ require 'pry'
   #location: project.css("ul.project-meta li a").text.strip
   # percent_funded: project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
 
+# def create_project_hash
+#   html = File.read('fixtures/kickstarter.html')
+#   kickstarter = Nokogiri::HTML(html)
+  
+#   projects = {}
+  
+#   kickstarter.css("li.project.grid_4").each do |project|
+#     title = project.css("h2.bbcard_name strong a").text
+#     projects[title.to_sym] = {
+#       :image_link => project.css("div.project-thumbnail a img").attribute("src").value, 
+#       :description => project.css("p.bbcard_blurb").text,
+#       :location => project.css("ul.project-meta span.location-name").text,
+#       :percent_funded => project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
+#     }
+#   end
+#   projects
+# end
+
+
 def create_project_hash
-  html = File.read('fixtures/kickstarter.html')
-  kickstarter = Nokogiri::HTML(html)
-  
-  projects = {}
-  
-  kickstarter.css("li.project.grid_4").each do |project|
-    title = project.css("h2.bbcard_name strong a").text
-    projects[title.to_sym] = {
-      :image_link => project.css("div.project-thumbnail a img").attribute("src").value, 
-      :description => project.css("p.bbcard_blurb").text,
-      :location => project.css("ul.project-meta span.location-name").text,
-      :percent_funded => project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
-    }
-  end
-  projects
+        
+        Nokogiri::HTML(open(https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign=5)) 
+        Horoscope::Scraper.scrape_profile(self.profile_url)        
+
+        binding.pry
+
+        # career.map do |description|
+        #     description.css("div.main-horoscope p").first.text
+        # end
+
 end
